@@ -507,6 +507,14 @@ footer p{font-size:12px;color:rgba(247,244,237,.32);line-height:1.85;}
   .eb span{font-size:12px;}
 }
 </style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C922MVRZ45"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-C922MVRZ45');
+</script>
 </head>
 <body>
 
@@ -852,7 +860,7 @@ footer p{font-size:12px;color:rgba(247,244,237,.32);line-height:1.85;}
   <div class="wrap">
     <h2>궁금한 거 있으시면<br>편하게 물어보세요!</h2>
     <p>문의 주신다고 해서<br>모두가 다 돈 벌지는 못해요..<br><br><strong>진짜 열심히 하실 분들만 문의 주세요.</strong><br>열심히 하지 않으시면<br>당연히 돈 못 벌어요 ㅠㅠ</p>
-    <a class="btn" href="https://open.kakao.com/me/livup" target="_blank" rel="noopener" id="kakao">카카오톡으로 문의하기</a>
+    <a class="btn" href="https://open.kakao.com/me/livup" target="_blank" rel="noopener" id="kakao" onclick="if(typeof gtag==='function'){gtag('event','kakao_click',{event_category:'engagement',event_label:'카카오톡 문의 버튼'});}">카카오톡으로 문의하기</a>
     <p class="nt">답장은 보통 하루 안에 드려요 ㅎㅎ</p>
   </div>
 </section>
