@@ -473,6 +473,28 @@ li:last-child{margin-bottom:0;}
 .btn:focus-visible{outline:2px solid var(--gold-2);outline-offset:4px;}
 .cta .nt{margin-top:20px;font-size:13.5px;color:rgba(247,244,237,.42);}
 
+.blogcta{
+  margin:0 0 26px;padding:22px 20px;
+  background:rgba(247,244,237,.05);
+  border:1px solid var(--line-d);border-radius:8px;
+}
+.blogcta-t{
+  font-family:var(--serif);font-weight:700;
+  font-size:17px;line-height:1.55;
+  color:var(--paper);margin-bottom:16px;
+  letter-spacing:-0.02em;
+}
+.btn2{
+  display:inline-block;
+  background:transparent;color:var(--gold-2);
+  font-size:15.5px;font-weight:700;letter-spacing:-0.02em;
+  padding:13px 30px;border-radius:3px;
+  border:1.5px solid var(--gold);text-decoration:none;
+  transition:background .2s,color .2s;
+}
+.btn2:hover{background:var(--gold);color:#14131F;}
+.btn2:focus-visible{outline:2px solid var(--gold-2);outline-offset:3px;}
+
 footer{background:var(--ink);border-top:1px solid var(--line-d);padding:30px 0;text-align:center;}
 footer p{font-size:12px;color:rgba(247,244,237,.32);line-height:1.85;}
 
@@ -533,15 +555,6 @@ footer p{font-size:12px;color:rgba(247,244,237,.32);line-height:1.85;}
     <p class="by">퀸퀸 · 타로 부업 1:1 밀착 교육</p>
   </div>
 </header>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C922MYRZ45"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-C922MYRZ45');
-</script>
 
 <!-- ═══ 00 퀸퀸 소개 ═══ -->
 <section class="dark2">
@@ -869,6 +882,12 @@ footer p{font-size:12px;color:rgba(247,244,237,.32);line-height:1.85;}
   <div class="wrap">
     <h2>궁금한 거 있으시면<br>편하게 물어보세요!</h2>
     <p>문의 주신다고 해서<br>모두가 다 돈 벌지는 못해요..<br><br><strong>진짜 열심히 하실 분들만 문의 주세요.</strong><br>열심히 하지 않으시면<br>당연히 돈 못 벌어요 ㅠㅠ</p>
+
+    <div class="blogcta">
+      <p class="blogcta-t">퀸퀸이 부업으로 1억 벌기까지<br>그 과정들, 꼭 보시고 연락주세요</p>
+      <a class="btn2" href="https://blog.naver.com/adult_house/224228390194" target="_blank" rel="noopener" id="blog" onclick="if(typeof gtag==='function'){gtag('event','blog_click',{event_category:'engagement',event_label:'블로그 보기 버튼'});}">📖 퀸퀸 스토리 보러가기</a>
+    </div>
+
     <a class="btn" href="https://open.kakao.com/me/livup" target="_blank" rel="noopener" id="kakao" onclick="if(typeof gtag==='function'){gtag('event','kakao_click',{event_category:'engagement',event_label:'카카오톡 문의 버튼'});}">카카오톡으로 문의하기</a>
     <p class="nt">답장은 보통 하루 안에 드려요 ㅎㅎ</p>
   </div>
