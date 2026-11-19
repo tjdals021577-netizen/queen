@@ -4,6 +4,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#08080a">
+<!-- Danggeun Market Code -->
+<script>
+
+(function (w, d) {
+  if (w.karrotPixel) return;
+  var k = { stub: true, queue: [] };
+  k.init = function () { k.queue.push(['init', arguments, Date.now()]); };
+  k.track = function () { k.queue.push(['track', arguments, Date.now()]); };
+  w.karrotPixel = k;
+  var s = d.createElement('script');
+  s.async = true;
+  s.src = 'https://karrot-pixel.business.daangn.com/karrot-pixel.js';
+  var f = d.getElementsByTagName('script')[0];
+  f && f.parentNode ? f.parentNode.insertBefore(s, f) : d.head.appendChild(s);
+})(window, document);
+window.karrotPixel.init('1795072584026827001');
+window.karrotPixel.track('ViewPage');
+
+</script>
+<!-- End Danggeun Market Code -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <title>업메리 · 퀸퀸 · 타로</title>
 <meta property="og:title" content="퀸퀸 · 타로">
@@ -974,6 +994,30 @@ body{padding-top:38px}
 
 <div class="bar" id="bar"><div class="fqs">오늘 무료 상담 <b>선착순 3명</b> · 남은 자리 <b class="fqn2">3</b></div><a href="https://pf.kakao.com/_lvxedX/chat">카카오톡으로 무료 상담 신청하기</a></div>
 
+<script>
+/* 당근 전환 추적 — 카카오채널 문의 클릭을 잠재고객 수집(Lead)으로 기록 */
+(function(){
+ var KAKAO='https://pf.kakao.com/_lvxedX/chat';
+ window.karrotLead=function(){
+  try{ if(window.karrotPixel && window.karrotPixel.track) window.karrotPixel.track('Lead'); }catch(e){}
+ };
+ window.karrotGoKakao=function(href){
+  window.karrotLead();
+  setTimeout(function(){ window.location.href = href || KAKAO; },300);
+ };
+ document.addEventListener('click',function(e){
+  var el=e.target, a=null;
+  while(el && el!==document){
+   if(el.tagName==='A' && /pf\.kakao\.com/.test(el.getAttribute('href')||'')){ a=el; break; }
+   el=el.parentNode;
+  }
+  if(!a) return;
+  e.preventDefault();
+  window.karrotGoKakao(a.getAttribute('href'));
+ },true);
+})();
+</script>
+
 <button class="ovx" id="ovx" aria-label="닫기">&#10005;</button>
 <div class="ov" id="ov"><div class="in"><img loading="lazy" decoding="async" id="ovimg" alt=""><div class="tip">아무 곳이나 누르면 닫혀요</div></div></div>
 
@@ -1332,7 +1376,7 @@ var FREE_LEFT = 3; // 오늘 남은 무료 상담 자리 (0이면 "오늘 마감
 (function(){var t=document.getElementById('fqb'),s=document.querySelector('.fqs');
  if(FREE_LEFT<=0){document.getElementById('fqt').innerHTML='오늘 무료 상담 <b>마감</b> · 내일 자리 예약하기 ›';if(s)s.innerHTML='오늘 무료 상담 <b>마감</b> · 내일 자리 먼저 예약하기';}
  else{document.getElementById('fqn').textContent=3;var n=document.querySelector('.fqn2');if(n)n.textContent=FREE_LEFT;}
- t.addEventListener('click',function(){location.href='https://pf.kakao.com/_lvxedX/chat'});t.style.cursor='pointer';
+ t.addEventListener('click',function(){window.karrotGoKakao('https://pf.kakao.com/_lvxedX/chat')});t.style.cursor='pointer';
 })();
 </script>
 </body>
