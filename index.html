@@ -24,6 +24,58 @@ window.karrotPixel.track('ViewPage');
 
 </script>
 <!-- End Danggeun Market Code -->
+<!-- Google Analytics 4 + Microsoft Clarity (GA4 G-C922MYRZ45 · Clarity x1sbxriqqr)
+     기록: 방문·체류·끝까지 읽음(스크롤 75%)·카톡 클릭 → GA4, 화면 녹화 → Clarity,
+     처음 들어온 꼬리표(utm)를 기억해 카톡 클릭에 같이 붙임.
+     기존 당근 Lead 코드(karrotGoKakao)는 그대로 두고 그 위에 한 겹 덧씌워 같이 기록 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C922MYRZ45"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-C922MYRZ45');
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "x1sbxriqqr");
+
+(function(){
+  /* 1) 처음 들어온 꼬리표 기억 */
+  var q = new URLSearchParams(location.search), keep = {};
+  ["utm_source","utm_medium","utm_campaign","utm_content"].forEach(function(k){ if(q.get(k)) keep[k]=q.get(k); });
+  try{
+    if(Object.keys(keep).length) sessionStorage.setItem("um_utm", JSON.stringify(keep));
+    keep = JSON.parse(sessionStorage.getItem("um_utm") || "{}");
+  }catch(e){}
+  var tag = function(){ return { channel: keep.utm_source || "direct", medium: keep.utm_medium || "", content: keep.utm_content || "" }; };
+  if (window.clarity) { var t0 = tag(); clarity("set", "channel", t0.channel); clarity("set", "content", t0.content); }
+
+  /* 2) 카톡 클릭: 기존 당근 코드(karrotGoKakao)에 덧씌우기 — 링크 클릭·배너 클릭 모두 잡힘 */
+  var sent = false;
+  function kakaoEvent(){
+    if (sent) return; sent = true; setTimeout(function(){ sent = false; }, 1500);
+    var t = tag();
+    gtag("event", "kakao_click", { channel: t.channel, medium: t.medium, content: t.content, page: location.pathname, transport_type: "beacon" });
+    if (window.clarity) clarity("event", "kakao_click");
+  }
+  function hook(){
+    var orig = window.karrotGoKakao;
+    if (typeof orig === "function" && !orig.__um) {
+      var w = function(href){ kakaoEvent(); return orig.apply(this, arguments); };
+      w.__um = true; window.karrotGoKakao = w;
+    }
+  }
+  document.addEventListener("DOMContentLoaded", hook);
+  window.addEventListener("load", hook);
+
+  /* 3) 끝까지 읽었나: 스크롤 75% 도달 1회 */
+  var s75 = false;
+  window.addEventListener("scroll", function(){
+    var d = document.documentElement, p = (d.scrollTop + innerHeight) / Math.max(d.scrollHeight, 1) * 100;
+    if (p >= 75 && !s75) { s75 = true; gtag("event", "scroll_75", { content: tag().content }); }
+  }, { passive: true });
+})();
+</script>
+<!-- End Google Analytics 4 + Microsoft Clarity -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <title>업메리 · 퀸퀸 · 타로</title>
 <meta property="og:title" content="퀸퀸 · 타로">
