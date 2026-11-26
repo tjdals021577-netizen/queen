@@ -669,7 +669,7 @@ body{padding-top:38px}
  <div class="w">
   <img class="h0prof" src="assets/img_02.webp" alt="퀸퀸 타로 강사">
   <div class="h0brand">업메리<span>93년생 · 타로심리상담사 1급</span></div>
-  <h1 class="h0h">타로는 배워도,<br>대부분 <em>'손님'</em>이 없어서 접습니다.</h1>
+  <h1 class="h0h" style="word-break:keep-all">타로는 배워도,<br>대부분 <em>'손님'</em>이 없어서<br>접습니다.</h1>
   <p class="h0kick">20분 상담 3만 원, 하루 40분이면<br><span class="h0won">월 <b>150만원</b></span></p>
   <p class="h0sub">카드 한 장 몰라도, 배웠는데 수익이 없어도 상관없습니다.<br><b style="color:#f5f3ee">리딩부터 마케팅까지 1:1로 직접 잡아드립니다.</b></p>
   <a class="h0cue" href="#proof" id="h0go">
@@ -1210,7 +1210,7 @@ body{padding-top:38px}
  var openOv=function(src){ovimg.src=src;ov.classList.add('on');ovx.classList.add('on');
   ov.scrollTop=0;document.documentElement.style.overflow='hidden'};
  var closeOv=function(){ov.classList.remove('on');ovx.classList.remove('on');
-  document.documentElement.style.overflow=''};
+  document.documentElement.style.overflow='';document.body.style.overflow=''};
  document.addEventListener('click',function(e){
   var t=e.target;
   while(t&&t!==document.body){
