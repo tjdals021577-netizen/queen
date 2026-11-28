@@ -772,14 +772,22 @@ body{padding-top:38px}
  </div>
 </section>
 <script>(function(){
- var ov=document.getElementById('ov'),im=document.getElementById('ovimg'),x=document.getElementById('ovx');
- if(!ov||!im)return;
- function open(u){im.src=u;ov.classList.add('on');if(x)x.classList.add('on');document.documentElement.style.overflow='hidden';}
- [].forEach.call(document.querySelectorAll('.r50s figure'),function(f){
+ /* 50대 후기 캡처 확대 — #ov 라이트박스는 문서 뒤쪽에 있으므로 클릭 위임으로 연결 */
+ function open(u){
+  var ov=document.getElementById('ov'),im=document.getElementById('ovimg'),x=document.getElementById('ovx');
+  if(!ov||!im)return;
+  im.src=u;ov.classList.add('on');if(x)x.classList.add('on');document.documentElement.style.overflow='hidden';
+ }
+ function pick(t){return t&&t.closest?t.closest('.r50s figure'):null;}
+ document.addEventListener('click',function(e){
+  var f=pick(e.target); if(!f)return;
+  var g=f.querySelector('img'); if(g)open(g.src);
+ });
+ document.addEventListener('keydown',function(e){
+  if(e.key!=='Enter'&&e.key!==' ')return;
+  var f=pick(e.target); if(!f)return;
   var g=f.querySelector('img'); if(!g)return;
-  function go(){open(g.src);}
-  f.addEventListener('click',go);
-  f.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});
+  e.preventDefault();open(g.src);
  });
 })();</script>
 
